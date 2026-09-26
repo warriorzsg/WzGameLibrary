@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>WzGameLibrary</title>
+  
+  <!-- Added Tab and Bookmark Icons -->
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -12,7 +17,11 @@
   <div id="offline-indicator" class="hidden">Offline Mode</div>
 
   <nav id="navbar">
-    <div class="nav-brand">WzGameLibrary</div>
+    <!-- Added Logo Image to Navbar -->
+    <div class="nav-brand" style="display: flex; align-items: center; gap: 10px;">
+      <img src="icon-192.png" alt="WzGameLibrary Logo" style="width: 32px; height: 32px; border-radius: 6px;">
+      <span>WzGameLibrary</span>
+    </div>
     <div class="nav-links">
       <button onclick="App.showView('library')">Library</button>
       <button onclick="App.showView('settings')">Settings</button>
