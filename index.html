@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>WzGameLibrary</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+  
+  <div id="offline-indicator" class="hidden">Offline Mode</div>
+
+  <nav id="navbar">
+    <div class="nav-brand">WzGameLibrary</div>
+    <div class="nav-links">
+      <button onclick="App.showView('library')">Library</button>
+      <button onclick="App.showView('settings')">Settings</button>
+    </div>
+  </nav>
+
+  <!-- Library View -->
+  <main id="view-library" class="view active">
+    <header class="hero">
+      <h1>WzGameLibrary</h1>
+      <p>Your Mini Gaming Universe</p>
+      <input type="text" id="search-bar" placeholder="Search games..." onkeyup="App.filterGames()">
+    </header>
+
+    <div class="categories">
+      <button class="cat-btn active" onclick="App.setCategory('All')">All</button>
+      <button class="cat-btn" onclick="App.setCategory('Arcade')">Arcade</button>
+      <button class="cat-btn" onclick="App.setCategory('Puzzle')">Puzzle</button>
+      <button class="cat-btn" onclick="App.setCategory('Action')">Action</button>
+      <button class="cat-btn" onclick="App.setCategory('Logic')">Logic</button>
+      <button class="cat-btn" onclick="App.setCategory('Casual')">Casual</button>
+    </div>
+
+    <section id="recent-section" class="hidden section-block">
+      <h2>Recently Played</h2>
+      <div id="recent-grid" class="game-grid"></div>
+    </section>
+
+    <section id="favorites-section" class="hidden section-block">
+      <h2>Favorites</h2>
+      <div id="favorites-grid" class="game-grid"></div>
+    </section>
+
+    <section class="section-block">
+      <h2>All Games (<span id="game-count">0</span>)</h2>
+      <div id="library-grid" class="game-grid"></div>
+    </section>
+  </main>
+
+  <!-- Game View -->
+  <main id="view-game" class="view hidden">
+    <div class="game-header">
+      <button class="btn" onclick="App.quitGame()">⬅ Back to Library</button>
+      <h2 id="current-game-title">Game Title</h2>
+      <button class="btn" onclick="App.restartGame()">Restart</button>
+    </div>
+    
+    <div class="game-layout">
+      <div id="game-container"></div>
+      
+      <div class="game-sidebar">
+        <div class="score-board">
+          <p>Score: <span id="current-score">0</span></p>
+          <p>High Score: <span id="high-score">0</span></p>
+        </div>
+        
+        <div id="mobile-controls" class="mobile-controls hidden">
+          <div class="d-pad">
+            <button class="d-btn up" onpointerdown="Engine.triggerInput('ArrowUp')">⬆</button>
+            <button class="d-btn left" onpointerdown="Engine.triggerInput('ArrowLeft')">⬅</button>
+            <button class="d-btn right" onpointerdown="Engine.triggerInput('ArrowRight')">➡</button>
+            <button class="d-btn down" onpointerdown="Engine.triggerInput('ArrowDown')">⬇</button>
+          </div>
+          <button class="d-btn action" onpointerdown="Engine.triggerInput('Space')">Action</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Settings / About View -->
+  <main id="view-settings" class="view hidden">
+    <div class="settings-container">
+      <h2>Settings</h2>
+      <div class="setting-item">
+        <span>Theme (Dark/Light)</span>
+        <button class="btn" onclick="App.toggleTheme()">Toggle Theme</button>
+      </div>
+      <div class="setting-item">
+        <span>Sound</span>
+        <button class="btn" onclick="App.toggleSound()" id="sound-btn">ON</button>
+      </div>
+      <div class="setting-item">
+        <span>Clear Data (Scores, Favorites, Recent)</span>
+        <button class="btn danger" onclick="App.clearData()">Clear Data</button>
+      </div>
+      <div class="setting-item" id="install-container" style="display:none;">
+        <span>App Installation</span>
+        <button class="btn success" id="install-btn">Install WzGameLibrary</button>
+      </div>
+      
+      <hr>
+      
+      <div class="credits">
+        <h2>About WzGameLibrary</h2>
+        <p>A collection of 30 lightweight browser games designed for mobile and PC.</p>
+        <p>Version: 1.0.0</p>
+        <p class="credit-text">Game Developer: Samir Parajuli</p>
+        <p class="credit-text">Developed by Samir Parajuli</p>
+        <p>More games and improvements coming soon.</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
